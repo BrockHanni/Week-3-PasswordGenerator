@@ -41,6 +41,46 @@ function passwordinfo() {
   return passwordinfo;
 }
 
+function randomize(array){
+  var randomindex = Math.floor(Math.random() * array.length)
+  var randomelement = array[randomindex]
+  return randomelement
+}
+
+function generatePassword() {
+  var options = passwordinfo()
+  var result = []
+  var possibleCharacters = []
+  var guaranteedCharacters = []
+
+  if (!options) return ""
+
+  if (options.includeslower) {
+    possibleCharacters = possibleCharacters.concat(lowercase);
+    guaranteedCharacters.push(getRandom(specialChar));
+  }
+  if (options.includesupper) {
+    possibleCharacters = possibleCharacters.concat(uppercase);
+    guaranteedCharacters.push(getRandom(numbersChar));
+  }
+  if (options.includesnumbers) {
+    possibleCharacters = possibleCharacters.concat(numbers);
+    guaranteedCharacters.push(getRandom(lowlettersChar));
+  }
+  if (options.includesspecial) {
+    possibleCharacters = possibleCharacters.concat(special);
+    guaranteedCharacters.push(getRandom(uplettersChar));
+  }
+  for(var i = 0; i < options.length; i++){
+    var possibleCharacter = getRandom(possibleCharacters)
+
+    result.push(possibleCharacter)
+  }
+  for (var i = 0; i < guaranteedCharacters.length; i++) {
+    result[i] = guaranteedCharacters[i];
+  }
+  return result.join("");
+}
 
 
 
