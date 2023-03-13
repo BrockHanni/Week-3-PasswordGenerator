@@ -10,12 +10,14 @@ var special = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+",";",":","
 function passwordinfo() {
   var length = parseInt(
     prompt("How long would you like your password to be? (8-128")
-  );
+  )
   if (length < 8) {
     alert("Length must be between 8 & 128 characters")
+    return
   }
   if (length > 128){
     alert("Length must be between 8 & 128 characters")
+    return
   }
 
   var includeslower = confirm("Click OK to add lowercase Letters")
@@ -30,6 +32,7 @@ function passwordinfo() {
     includesspecial === false   
   ) {
   alert("Select at least one character type")
+  return
   }
   var passwordinfo = {
     length: length,
@@ -38,7 +41,7 @@ function passwordinfo() {
     includesnumbers: includesnumbers,
     includesspecial: includesspecial,
   }
-  return passwordinfo;
+  return passwordinfo
 }
 
 function randomize(array){
@@ -57,45 +60,42 @@ function generatePassword() {
 
   if (options.includeslower) {
     possibleCharacters = possibleCharacters.concat(lowercase);
-    guaranteedCharacters.push(getRandom(specialChar));
+    guaranteedCharacters.push(randomize(lowercase))
   }
   if (options.includesupper) {
     possibleCharacters = possibleCharacters.concat(uppercase);
-    guaranteedCharacters.push(getRandom(numbersChar));
+    guaranteedCharacters.push(randomize(uppercase))
   }
   if (options.includesnumbers) {
     possibleCharacters = possibleCharacters.concat(numbers);
-    guaranteedCharacters.push(getRandom(lowlettersChar));
+    guaranteedCharacters.push(randomize(numbers))
   }
   if (options.includesspecial) {
     possibleCharacters = possibleCharacters.concat(special);
-    guaranteedCharacters.push(getRandom(uplettersChar));
+    guaranteedCharacters.push(randomize(special))
   }
   for(var i = 0; i < options.length; i++){
-    var possibleCharacter = getRandom(possibleCharacters)
+    var possibleCharacter = randomize(possibleCharacters)
 
     result.push(possibleCharacter)
   }
   for (var i = 0; i < guaranteedCharacters.length; i++) {
-    result[i] = guaranteedCharacters[i];
+    result[i] = guaranteedCharacters[i]
   }
-  return result.join("");
+  return result.join("")
 }
 
-
-
-
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate")
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var password = generatePassword()
+  var passwordText = document.querySelector("#password")
 
-  passwordText.value = password;
+  passwordText.value = password
 
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword)
