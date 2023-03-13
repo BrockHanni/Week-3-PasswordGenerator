@@ -4,6 +4,12 @@ var uppercase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"
 var numbers = ["0","1","2","3","4","5","6","7","8","9"]
 var special = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+",";",":","[","]","{","}","?","<",">"]
 
+// adding the alerts to select characters to include
+var includeslower = confirm("Click OK to add lowercase Letters")
+var includesupper = confirm("Click OK to add UPPERCASE letters")
+var includesnumbers = confirm("Click OK to add numbers")
+var includesspecial = confirm("Click OK to add special characters")
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
